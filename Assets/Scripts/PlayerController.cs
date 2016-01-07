@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent (typeof(PlayerMotor))]
-public class PlayerController : MonoBehaviour {
+[RequireComponent(typeof(PlayerMotor))]
+public class PlayerController : MonoBehaviour
+{
 
     private PlayerMotor Motor;
 
@@ -17,15 +18,16 @@ public class PlayerController : MonoBehaviour {
     private float yRotation;
     private float xRotation;
 
-	void Start () {
+    void Start()
+    {
         Motor = GetComponent<PlayerMotor>();
     }
-	
-    void Update ()
+
+    void Update()
     {
         if (Input.GetKeyDown("t"))
         {
-            switch(PlayerPrefs.GetInt("Perspective"))
+            switch (PlayerPrefs.GetInt("Perspective"))
             {
                 case 1:
                     PlayerPrefs.SetInt("Perspective", 3);
@@ -43,10 +45,10 @@ public class PlayerController : MonoBehaviour {
         {
             Motor.ActivateFriction();
         }
-        
+
         //Boost gravity?
         Motor.BoostGravity = Input.GetButton("Boost Gravity");
-        
+
 
 
 
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour {
         //Rotate camera around the y axis
         xRotation = Input.GetAxisRaw("Mouse Y");
         float cameraRot = xRotation * PlayerPrefs.GetFloat("LookSensitivity");
-        
+
         Motor.RotateCamera(cameraRot);
 
 
