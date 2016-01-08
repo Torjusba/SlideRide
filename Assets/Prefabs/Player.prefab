@@ -1372,7 +1372,7 @@ MonoBehaviour:
   cam: {fileID: 2030208}
   head: {fileID: 403062}
   BoostGravity: 0
-  GravityBoost: 1000
+  GravityBoost: 300
   maxVelocity: 25
   jetpackMaxVelocity: 15
 --- !u!114 &11417920
@@ -1387,7 +1387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 6000
-  _JumpForce: 1000
+  _JumpForce: 3500
 --- !u!114 &11419192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4846,7 +4846,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: GravityBoost
-      value: 1000
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: muzzleVelocity
@@ -4866,7 +4866,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _JumpForce
-      value: 1000
+      value: 3500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: speed
