@@ -19,7 +19,7 @@ public class BulletScript : NetworkBehaviour {
             return;
 
         StartCoroutine(timeBullet());
-        GetComponent<Rigidbody>().velocity = direction * velocity;
+        GetComponent<Rigidbody>().velocity += direction * velocity;
     }
 
     void OnCollisionEnter(Collision collision)
