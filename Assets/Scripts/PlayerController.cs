@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private PlayerMotor Motor;
 
     [SerializeField]
-    private float speed = 1f;
+    private float acceleration = 1f;
 
     [SerializeField]
     private float _JumpForce = 50f;
@@ -57,7 +57,7 @@ public class PlayerController : MonoBehaviour
         zAxis = Input.GetAxisRaw("Vertical");
         Vector3 MovX = transform.right * xAxis;
         Vector3 MovY = transform.forward * zAxis;
-        Vector3 mov = (MovX + MovY).normalized * speed;
+        Vector3 mov = (MovX + MovY).normalized * acceleration;
         Motor.Move(mov);
 
         //Rotate around the y axis
@@ -74,10 +74,10 @@ public class PlayerController : MonoBehaviour
 
 
         //Jetpack
-        Vector3 JumpForce = Vector3.zero;
+        float JumpForce = 0f;
         if (Input.GetButton("Jump"))
         {
-            JumpForce = Vector3.up * _JumpForce;
+            JumpForce = _JumpForce;
         }
         Motor.Jump(JumpForce);
     }
