@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraHandler : MonoBehaviour {
+public class CameraHandler : MonoBehaviour
+{
     [SerializeField]
     int currentPerspective;
     Vector3 thirdPersonPos;
@@ -9,14 +10,17 @@ public class CameraHandler : MonoBehaviour {
     [SerializeField]
     Vector3 targetPos;
 
-    void Start () {
+    void Start()
+    {
         currentPerspective = PlayerPrefs.GetInt("Perspective");
         thirdPersonPos = new Vector3(0f, 1.5f, -5.5f);
         firstPersonPos = new Vector3(0f, 0f, 0f);
-	}
+    }
 
-    void Update () {
-        if (currentPerspective != PlayerPrefs.GetInt("Perspective")) {
+    void Update()
+    {
+        if (currentPerspective != PlayerPrefs.GetInt("Perspective"))
+        {
             currentPerspective = PlayerPrefs.GetInt("Perspective");
             switch (currentPerspective)
             {
@@ -27,12 +31,12 @@ public class CameraHandler : MonoBehaviour {
                     targetPos = thirdPersonPos;
                     break;
             }
-            
+
             StartCoroutine(ChangePerspective());
         }
-	}
+    }
 
-    IEnumerator ChangePerspective ()
+    IEnumerator ChangePerspective()
     {
         while (gameObject.GetComponent<Transform>().localPosition != targetPos)
         {

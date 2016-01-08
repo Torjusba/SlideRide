@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-[RequireComponent (typeof(Player))]
-public class PlayerSetup : NetworkBehaviour {
+[RequireComponent(typeof(Player))]
+public class PlayerSetup : NetworkBehaviour
+{
 
     [SerializeField]
     Behaviour[] componentsToDisable;
@@ -26,7 +27,8 @@ public class PlayerSetup : NetworkBehaviour {
             DisableComponents();
             AssignRemoteLayer();
 
-        } else
+        }
+        else
         {
 
             Cursor.visible = false;
@@ -70,7 +72,7 @@ public class PlayerSetup : NetworkBehaviour {
         }
     }
 
-    void OnDisable ()
+    void OnDisable()
     {
         if (!this.isLocalPlayer)
         {

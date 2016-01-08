@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 
 [System.Serializable]
-public class PlayerWeapon : MonoBehaviour {
+public class PlayerWeapon : MonoBehaviour
+{
 
     public string weaponName = "Basic Gun";
 

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerGUI : MonoBehaviour {
+public class PlayerGUI : MonoBehaviour
+{
 
     public GUIStyle barStyle = new GUIStyle();
     public Texture emptyTexture;
@@ -29,7 +30,7 @@ public class PlayerGUI : MonoBehaviour {
         escMenu.GetComponent<Canvas>().enabled = false;
     }
 
-    private readonly float  startX = 20f;
+    private readonly float startX = 20f;
     private readonly float startY = 10f;
     private readonly float totalSizeY = 100f;
 
@@ -51,7 +52,8 @@ public class PlayerGUI : MonoBehaviour {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;
 
-            } else
+            }
+            else
             {
                 //Disable menu
                 escMenu.GetComponent<Canvas>().enabled = false;

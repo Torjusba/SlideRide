@@ -2,7 +2,8 @@
 using System.Collections;
 using UnityEngine.Networking;
 
-public class FireWeapon : NetworkBehaviour {
+public class FireWeapon : NetworkBehaviour
+{
 
     [SerializeField]
     private Transform barrel;
@@ -13,12 +14,13 @@ public class FireWeapon : NetworkBehaviour {
     [SerializeField]
     private PlayerWeapon weapon;
 
-	void Update () {
-	    if (Input.GetButtonDown("Fire1"))
+    void Update()
+    {
+        if (Input.GetButtonDown("Fire1"))
         {
             Cmdfire();
         }
-	}
+    }
 
     [Command]
     void Cmdfire()

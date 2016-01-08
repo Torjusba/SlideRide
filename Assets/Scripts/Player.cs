@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.Networking;
 
-public class Player : NetworkBehaviour {
+public class Player : NetworkBehaviour
+{
 
     [SerializeField]
     PlayerMotor motor;
@@ -17,7 +18,7 @@ public class Player : NetworkBehaviour {
         SetDefaults();
     }
 
-    void FixedUpdate ()
+    void FixedUpdate()
     {
         if (transform.position.y <= -5)
         {
@@ -25,7 +26,7 @@ public class Player : NetworkBehaviour {
         }
     }
 
-    public void TakeDamage (int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         Debug.Log(transform.name + " now has " + currentHealth + " health.");
@@ -37,7 +38,7 @@ public class Player : NetworkBehaviour {
         }
     }
 
-    
+
 
     public void SetDefaults()
     {

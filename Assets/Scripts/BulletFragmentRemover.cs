@@ -1,13 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BulletFragmentRemover : MonoBehaviour {
+public class BulletFragmentRemover : MonoBehaviour
+{
 
-	void Start () {
+    void Start()
+    {
         StartCoroutine(remove());
-	}
-	
-	IEnumerator remove()
+    }
+
+    IEnumerator remove()
     {
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);

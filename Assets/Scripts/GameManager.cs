@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class GameManager : MonoBehaviour {
-    
+public class GameManager : MonoBehaviour
+{
+
     public static RespawnScript respawnScript;
 
     public static void respawn(GameObject oldPlayer)
     {
-        respawnScript.respawn(oldPlayer);   
+        respawnScript.respawn(oldPlayer);
     }
 
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
@@ -18,18 +19,18 @@ public class GameManager : MonoBehaviour {
         players.Add(playerID, player);
         player.transform.name = playerID;
     }
-    
+
     public static void UnRegisterPlayer(string name)
     {
         players.Remove(name);
     }
 
-    public static Player GetPlayer (string ID)
+    public static Player GetPlayer(string ID)
     {
         return players[ID];
     }
 
-    void OnGUI ()
+    void OnGUI()
     {
         if (Input.GetKey(KeyCode.Tab))
         {

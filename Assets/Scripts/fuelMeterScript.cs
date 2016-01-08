@@ -28,7 +28,7 @@ public class fuelMeterScript : MonoBehaviour
     void Update()
     {
         float fuel = motor.fuel;
-        if (fuel != oldFuel) 
+        if (fuel != oldFuel)
         {
             if (motor.jetpackRefueling) // Refueling
             {

@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.Networking;
 
-public class RespawnScript : NetworkBehaviour {
+public class RespawnScript : NetworkBehaviour
+{
 
     [Header("Camera")]
 
@@ -16,7 +17,8 @@ public class RespawnScript : NetworkBehaviour {
     }
     bool respawning = false;
 
-	public void respawn(GameObject oldPlayer) {
+    public void respawn(GameObject oldPlayer)
+    {
         if (!respawning)
         {
             respawning = true;
@@ -43,6 +45,6 @@ public class RespawnScript : NetworkBehaviour {
         GameObject newPlayer = (GameObject)Instantiate(NetworkManager.singleton.playerPrefab, spawnPos.position, spawnPos.rotation);
         NetworkServer.Destroy(oldPlayer);
         NetworkServer.ReplacePlayerForConnection(oldPlayer.GetComponent<NetworkIdentity>().connectionToClient, newPlayer, oldPlayer.GetComponent<NetworkIdentity>().playerControllerId);
-        
+
     }
 }
