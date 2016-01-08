@@ -4,7 +4,8 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class CustomNetworkManager : NetworkManager {
+public class CustomNetworkManager : NetworkManager
+{
 
     [SerializeField]
     Text IPAddress;

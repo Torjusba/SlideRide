@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SettingsScript : MonoBehaviour {
+public class SettingsScript : MonoBehaviour
+{
 
     [SerializeField]
     private int startPerspective = 1;
@@ -9,7 +10,8 @@ public class SettingsScript : MonoBehaviour {
     [SerializeField]
     private float startSensitivity = 3f;
 
-	void Awake () {
+    void Awake()
+    {
         //Camera perspective
         if (!PlayerPrefs.HasKey("Perspective"))
         {
@@ -20,6 +22,6 @@ public class SettingsScript : MonoBehaviour {
         {
             PlayerPrefs.SetFloat("LookSensitivity", startSensitivity);
         }
-        
-	}
+
+    }
 }

@@ -3,7 +3,8 @@ using System.Collections;
 using UnityEngine.Networking;
 
 
-public class BulletScript : NetworkBehaviour {
+public class BulletScript : NetworkBehaviour
+{
 
     [SerializeField]
     GameObject fragment;
@@ -12,14 +13,14 @@ public class BulletScript : NetworkBehaviour {
     public int range;
     public Vector3 direction;
     public float velocity;
-	
+
     void Start()
     {
         if (!base.isServer)
             return;
 
         StartCoroutine(timeBullet());
-        GetComponent<Rigidbody>().velocity = direction * velocity;
+        GetComponent<Rigidbody>().velocity += direction * velocity;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -37,13 +38,12 @@ public class BulletScript : NetworkBehaviour {
             Vector3 fragmentPosition = transform.position;
             fragmentPosition += Random.rotation.eulerAngles.normalized * 0.1f;
 
-
             Instantiate(fragment, fragmentPosition, transform.rotation);
         }
         Destroy(gameObject);
     }
 
-    IEnumerator timeBullet ()
+    IEnumerator timeBullet()
     {
         while (true)
         {
