@@ -74,10 +74,10 @@ public class PlayerController : MonoBehaviour
 
 
         //Jetpack
-        Vector3 JumpForce = Vector3.zero;
+        float JumpForce = 0f;
         if (Input.GetButton("Jump"))
         {
-            JumpForce = Vector3.up * _JumpForce;
+            JumpForce = _JumpForce;
         }
         Motor.Jump(JumpForce);
     }

@@ -182,9 +182,9 @@ public class PlayerMotor : MonoBehaviour
         head.transform.localEulerAngles = new Vector3(currentCameraRotX, 0f, 0f);
     }
 
-    public void Jump(Vector3 _jumpForce)
+    public void Jump(float _jumpForce)
     {
-        jumpForce = _jumpForce;
+        jumpForce = Vector3.up * _jumpForce;
     }
 
     public void DeactivateFriction()
