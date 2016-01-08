@@ -24,6 +24,8 @@ public class FireWeapon : NetworkBehaviour {
     void Cmdfire()
     {
         GameObject bullet = (GameObject)Instantiate(bulletPrefab, barrel.position + barrel.forward * 2, barrel.rotation);
+        bullet.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
+
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = weapon.range;
         bulletScript.damage = weapon.damage;
