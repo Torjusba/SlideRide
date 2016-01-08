@@ -1362,9 +1362,10 @@ MonoBehaviour:
   emitters:
   - {fileID: 19803288}
   - {fileID: 19859786}
-  maxFuel: 400
+  maxFuel: 300
   fuel: 0
-  fuelRefillRate: 1
+  fuelRefillRate: 0.75
+  fuelUsageRate: 2
   frictionMaterial: {fileID: 13400000, guid: 98f9cfd09b0fb0646b786db90919a3c2, type: 2}
   noFrictionMaterial: {fileID: 13400000, guid: 73ee3a8285610b6419cc5e6793fe91dd, type: 2}
   camLimit: 80
@@ -1373,6 +1374,7 @@ MonoBehaviour:
   BoostGravity: 0
   GravityBoost: 1000
   maxVelocity: 25
+  jetpackMaxVelocity: 15
 --- !u!114 &11417920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4856,11 +4858,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fuelRefillRate
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxFuel
-      value: 400
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _JumpForce
@@ -4873,6 +4875,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: maxVelocity
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fuelUsageRate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jetpackMaxVelocity
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

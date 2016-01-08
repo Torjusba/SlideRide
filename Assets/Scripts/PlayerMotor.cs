@@ -13,6 +13,7 @@ public class PlayerMotor : MonoBehaviour
     public float maxFuel;
     public float fuel;
     public float fuelRefillRate;
+    public float fuelUsageRate;
 
     [Header("Physics")]
 
@@ -43,9 +44,13 @@ public class PlayerMotor : MonoBehaviour
     Vector3 rotation = Vector3.zero;
     Vector3 jumpForce = Vector3.zero;
 
+    internal bool jetpackRefueling;
+    internal bool jetpackMustWaitForFuel;
+
     float camRotationX = 0f;
 
     public float maxVelocity;
+    public float jetpackMaxVelocity;
 
     private Rigidbody rb;
 
@@ -53,6 +58,8 @@ public class PlayerMotor : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         fuel = maxFuel;
+        jetpackRefueling = false;
+        jetpackMustWaitForFuel = false;
     }
 
     void FixedUpdate()
@@ -91,10 +98,13 @@ public class PlayerMotor : MonoBehaviour
 
     void ApplyJetpack()
     {
-        if (jumpForce != Vector3.zero && fuel > 0)
+        // If the jetpack reached 0 fuel it starts to refuel, so don't let the player use it before we reached at least 50%. 
+        // If we're already using fuel and flying lets continue till we reach 0f.
+        if (jumpForce != Vector3.zero && !jetpackMustWaitForFuel)
         {
+            jetpackRefueling = false;
             //Generate force and draw fuel
-            if (rb.velocity.y < maxVelocity)
+            if (rb.velocity.y < jetpackMaxVelocity)
             {
                 rb.AddForce(jumpForce, ForceMode.Force); // Add jetpack force since we're below maximum velocity
             }
@@ -102,11 +112,24 @@ public class PlayerMotor : MonoBehaviour
             {
                 rb.AddForce(-gravityForce, ForceMode.Force); // Add just enough to keep us at same velocity in air
             }
-            fuel -= 2f;
+            fuel -= fuelUsageRate;
+            if (fuel <= 0f)
+            {
+                jetpackMustWaitForFuel = true;
+            }
         }
-        else if (fuel <= maxFuel)
+        else
         {
-            fuel += fuelRefillRate;
+            jetpackRefueling = true;
+            if (fuel <= maxFuel)
+            {
+                fuel += fuelRefillRate;
+
+                if (fuel >= maxFuel * 0.5f) // Enough fuel to start the jetpack again
+                {
+                    jetpackMustWaitForFuel = false;
+                }
+            }
         }
     }
 
