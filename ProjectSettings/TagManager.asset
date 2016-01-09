@@ -15,7 +15,7 @@ TagManager:
   - 
   - LocalPlayer
   - RemotePlayer
-  - 
+  - Particles
   - 
   - 
   - 
@@ -40,4 +40,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ParticleSorting
+    uniqueID: 3522898417
     locked: 0
