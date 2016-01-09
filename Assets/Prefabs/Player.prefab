@@ -89,7 +89,7 @@ GameObject:
   - 114: {fileID: 11443318}
   - 114: {fileID: 11419194}
   - 114: {fileID: 11499396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 437280}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: JetPack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - 4: {fileID: 401338}
   - 33: {fileID: 3307708}
   - 23: {fileID: 2314824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -401,7 +401,7 @@ GameObject:
   - 4: {fileID: 403062}
   - 33: {fileID: 3389866}
   - 23: {fileID: 2357570}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -1613,7 +1613,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponName: Basic Gun
-  damage: 101
   range: 5
   muzzleVelocity: 100
 --- !u!124 &12431396
@@ -4887,7 +4886,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
-      value: 10
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967039
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
