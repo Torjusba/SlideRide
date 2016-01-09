@@ -9,7 +9,6 @@ public class BulletScript : NetworkBehaviour
     [SerializeField]
     GameObject fragment;
 
-    public int damage;
     public int range;
     public Vector3 direction;
     public float velocity;
@@ -25,11 +24,11 @@ public class BulletScript : NetworkBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        //If it hits a player, do damage
+        //If it hits a player, kill it
         if (collision.collider.tag == "Player")
         {
             Player target = GameManager.GetPlayer(collision.collider.name);
-            target.TakeDamage(damage);
+            target.Die();
         }
 
         //Create fragments

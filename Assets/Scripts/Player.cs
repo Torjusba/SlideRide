@@ -7,41 +7,31 @@ public class Player : NetworkBehaviour
     [SerializeField]
     PlayerMotor motor;
 
-    [SerializeField]
-    public int maxHealth = 100;
 
-    [SyncVar]
-    public int currentHealth;
+    public bool isAlive;
 
     void Awake()
     {
-        SetDefaults();
+        isAlive = true;
     }
 
     void FixedUpdate()
     {
+        //If palyer falls off map
         if (transform.position.y <= -5)
         {
-            TakeDamage(currentHealth);
+            isAlive = false;
         }
-    }
 
-    public void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        Debug.Log(transform.name + " now has " + currentHealth + " health.");
-
-        //If no health left, die
-        if (currentHealth <= 0)
+        //If player is no longer alive
+        if (!isAlive)
         {
             motor.die();
         }
     }
 
-
-
-    public void SetDefaults()
+    public void Die()
     {
-        currentHealth = maxHealth;
+        isAlive = false;
     }
 }
