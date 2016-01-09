@@ -157,7 +157,7 @@ GameObject:
   - 4: {fileID: 419564}
   - 198: {fileID: 19803288}
   - 199: {fileID: 19974428}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -384,7 +384,7 @@ GameObject:
   - 4: {fileID: 402900}
   - 198: {fileID: 19859786}
   - 199: {fileID: 19908374}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1465,7 +1465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b00f4c31418833f468bd69cbcca4f43c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  barStyle:
+  dotStyle:
     m_Name: 
     m_Normal:
       m_Background: {fileID: 0}
@@ -1524,8 +1524,6 @@ MonoBehaviour:
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 0
-  emptyTexture: {fileID: 0}
-  fullTexture: {fileID: 0}
   dotTexture: {fileID: 0}
 --- !u!114 &11475522
 MonoBehaviour:
@@ -1571,8 +1569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   motor: {fileID: 11407272}
-  maxHealth: 100
-  currentHealth: 0
+  isAlive: 0
 --- !u!114 &11495312
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4887,6 +4884,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: acceleration
       value: 6000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

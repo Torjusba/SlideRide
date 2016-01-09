@@ -122,7 +122,9 @@ namespace UnityStandardAssets.Water
                 Vector4 clipPlane = CameraSpacePlane(refractionCamera, pos, normal, -1.0f);
                 refractionCamera.projectionMatrix = cam.CalculateObliqueMatrix(clipPlane);
 
-                refractionCamera.cullingMask = ~(1 << 4) & refractLayers.value; // never render water layer
+                int waterLayerMask = ~(1 << 4);
+                int particleLayerMask = ~(1 << 10);
+                refractionCamera.cullingMask = waterLayerMask & particleLayerMask & refractLayers.value; // Don't render water or particle layer
                 refractionCamera.targetTexture = m_RefractionTexture;
                 refractionCamera.transform.position = cam.transform.position;
                 refractionCamera.transform.rotation = cam.transform.rotation;
