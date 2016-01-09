@@ -241,6 +241,5 @@ public class PlayerMotor : MonoBehaviour
     {
         GameManager.UnRegisterPlayer(gameObject.name);
         GameManager.respawn(gameObject);
-        //Destroy(gameObject);
     }
 }

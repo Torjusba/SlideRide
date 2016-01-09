@@ -30,7 +30,6 @@ public class FireWeapon : NetworkBehaviour
 
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
         bulletScript.range = weapon.range;
-        bulletScript.damage = weapon.damage;
         bulletScript.direction = barrel.forward;
         bulletScript.velocity = weapon.muzzleVelocity;
         NetworkServer.Spawn(bullet);

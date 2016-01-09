@@ -4,23 +4,17 @@ using System.Collections;
 public class PlayerGUI : MonoBehaviour
 {
 
-    public GUIStyle barStyle = new GUIStyle();
-    public Texture emptyTexture;
-    public Texture fullTexture;
+    public GUIStyle dotStyle = new GUIStyle();
     public Texture dotTexture;
 
-    private int maxHealth;
-    private int currentHealth;
-
     bool isMenu = false;
+
     PlayerController pController;
     FireWeapon fWeapon;
     GameObject escMenu;
 
     void Start()
     {
-        emptyTexture = (Texture)Resources.Load("EmptyHealthBar");
-        fullTexture = (Texture)Resources.Load("FullHealthBar");
         dotTexture = (Texture)Resources.Load("Dot");
 
         pController = gameObject.GetComponent<PlayerController>();
@@ -29,10 +23,6 @@ public class PlayerGUI : MonoBehaviour
         escMenu = GameObject.Find("EscMenu");
         escMenu.GetComponent<Canvas>().enabled = false;
     }
-
-    private readonly float startX = 20f;
-    private readonly float startY = 10f;
-    private readonly float totalSizeY = 100f;
 
     void Update()
     {
@@ -73,12 +63,9 @@ public class PlayerGUI : MonoBehaviour
 
     void OnGUI()
     {
-        //Health Bars
-        GUI.Box(new Rect(startX, startY, (float)gameObject.GetComponent<Player>().maxHealth, totalSizeY), emptyTexture, barStyle);
-        GUI.Box(new Rect(startX, startY, (float)gameObject.GetComponent<Player>().currentHealth, totalSizeY), fullTexture, barStyle);
-
+        //Crosshair
         GUI.BeginGroup(new Rect(0, 0, Screen.width, Screen.height));
-        GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), dotTexture, barStyle);
+        GUI.Box(new Rect(Screen.width / 2 - 10, Screen.height / 2 - 10, 20, 20), dotTexture, dotStyle);
         GUI.EndGroup();
     }
 }
