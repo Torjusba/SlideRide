@@ -15,9 +15,9 @@ public class Player : NetworkBehaviour
         isAlive = true;
     }
 
-    void FixedUpdate()
+    void LateUpdate()
     {
-        //If palyer falls off map
+        //If player falls off map
         if (transform.position.y <= -5)
         {
             isAlive = false;
