@@ -14,12 +14,26 @@ public class FireWeapon : NetworkBehaviour
     [SerializeField]
     private PlayerWeapon weapon;
 
+    bool hasFiredRecently = false;
+
     void Update()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") || Input.GetAxis("FireJoystick") > 0)
         {
-            Cmdfire();
+            if (!hasFiredRecently)
+            {
+                StartCoroutine(Fire());
+            }
         }
+    }
+
+    IEnumerator Fire()
+    {
+        hasFiredRecently = true;
+        Cmdfire();
+        yield return new WaitForSeconds(0.1f);
+        hasFiredRecently = false;
+        
     }
 
     [Command]

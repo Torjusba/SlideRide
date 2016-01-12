@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        if (Input.GetButtonDown("Friction") || Input.GetAxis("Friction") > 0)
+        if (Input.GetButtonDown("Friction") || Input.GetAxis("FrictionJoystick") > 0)
         {
             Motor.DeactivateFriction();
         }
