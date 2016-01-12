@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("t"))
+        if (Input.GetButtonDown("Change Perspective"))
         {
             switch (PlayerPrefs.GetInt("Perspective"))
             {
@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
                     break;
             }
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetButtonDown("Friction") || Input.GetAxis("Friction") > 0)
         {
             Motor.DeactivateFriction();
         }
