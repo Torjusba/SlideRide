@@ -121,16 +121,12 @@ public class PlayerMotor : MonoBehaviour
         else
         {
             jetpackRefueling = true;
-            if (fuel <= maxFuel)
+            if (fuel >= maxFuel * 0.5f) // Enough fuel to start the jetpack again
             {
-                fuel += fuelRefillRate;
-
-                if (fuel >= maxFuel * 0.5f) // Enough fuel to start the jetpack again
-                {
-                    jetpackMustWaitForFuel = false;
-                }
+                jetpackMustWaitForFuel = false;
             }
         }
+        fuel += fuelRefillRate; // Add fuel regardless
     }
 
     void PerformMovement()
@@ -143,28 +139,28 @@ public class PlayerMotor : MonoBehaviour
             {
                 // We can still accelerate, so lets do so
                 float velocityMultiplier = remaingingVelocity / maxVelocity; //As velocity->maxVelocity the multiplier->0 and no force is added
-                rb.AddForce(movementForce * velocityMultiplier, ForceMode.Force);
+                rb.AddForce(movementForce * velocityMultiplier, ForceMode.Impulse);
             }
             else // Max velocity
             {
                 // We can't accelerate any more, but we should still be able to change direction
-                Vector3 force = GetMovementForce3(movementForce, rb.velocity);
+                Vector3 force = GetMovementForce4(movementForce, rb.velocity);
 
-                rb.AddForce(force, ForceMode.Force);
+                rb.AddForce(force, ForceMode.Impulse);
             }
         }
     }
 
     private Vector3 GetMovementForce1(Vector3 moveDirection, Vector3 velocityDirection)
     {
-        Vector2 forward = new Vector2(rb.velocity.x, rb.velocity.z);
+        Vector2 forward = new Vector2(velocityDirection.x, velocityDirection.z);
         Vector2 direction = new Vector2(movementForce.x, movementForce.z);
 
         // Remove the component that goes in the same direction as the velocity
         float forwardPart = Vector2.Dot(forward, direction);
         Vector3 directionalForce = movementForce;
-        if (forwardPart > 0) // There is a part of the vector that pushes the same way as velocity
-            directionalForce -= forwardPart * rb.velocity.normalized;
+        if (forwardPart > 0) // There is a part of the vector that pushes the same way as velocity, remove it
+            directionalForce -= forwardPart * velocityDirection.normalized;
 
         return directionalForce;
     }
@@ -188,13 +184,54 @@ public class PlayerMotor : MonoBehaviour
 
     private Vector3 GetMovementForce3(Vector3 moveDirection, Vector3 velocityDirection)
     {
-        Vector3 forward = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        Vector3 direction = new Vector3(movementForce.x, 0f, movementForce.z);
+        Vector3 forward = new Vector3(velocityDirection.x, 0f, velocityDirection.z);
+        Vector3 direction = new Vector3(moveDirection.x, 0f, moveDirection.z);
 
         // Remove the component that goes in the same direction as the velocity
         Vector3 forwardPart = Vector3.Project(direction, velocityDirection);
         Vector3 directionalForce = moveDirection - forwardPart;
         return directionalForce;
+    }
+
+    private Vector3 GetMovementForce4(Vector3 moveDirection, Vector3 velocityDirection)
+    {
+        Vector2 forward = new Vector3(velocityDirection.x, velocityDirection.z);
+        Vector2 direction = new Vector3(moveDirection.x, moveDirection.z);
+
+        float angleDiff = Mathf.Abs(Vector2.Angle(forward, direction)); // Should be between 0 and +180, right? (just in radians)
+        float angleMultiplier;
+
+        if (angleDiff >= 90f) // Backwards
+        {
+            angleMultiplier = 1f;
+        }
+        else
+        {
+            float angleInRads = (angleDiff / 360f * Mathf.PI);                 // Angle halved to 0-90 and converted to radians
+            angleMultiplier = Mathf.Sin(angleInRads);
+        }
+
+
+        Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
+        return moveDirection * angleMultiplier;
+    }
+
+    private Vector3 GetMovementForce5(Vector3 moveDirection, Vector3 velocityDirection)
+    {
+        Vector2 forward = new Vector3(velocityDirection.x, velocityDirection.z);
+        Vector2 direction = new Vector3(moveDirection.x, moveDirection.z);
+
+        float angleDiff = Vector2.Angle(forward, direction); // Should be between 0 and +-180, right? (just in radians)
+        float angleMultiplier;
+
+        if (angleDiff >= Mathf.PI / 2f) // Over 90 degrees (so, backwards)
+            angleMultiplier = 1f;
+        else
+            angleMultiplier = Mathf.Sin(angleDiff); // Gradually go from 0 to 1
+
+        Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
+
+        return moveDirection * angleMultiplier;
     }
 
     public void Rotate(Vector3 _rotation)
