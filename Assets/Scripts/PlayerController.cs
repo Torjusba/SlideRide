@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         {
             Motor.DeactivateFriction();
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (!Input.GetButton("Friction") && Input.GetAxis("FrictionJoystick") <= 0)
         {
             Motor.ActivateFriction();
         }
