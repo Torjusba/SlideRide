@@ -1362,10 +1362,11 @@ MonoBehaviour:
   emitters:
   - {fileID: 19803288}
   - {fileID: 19859786}
-  maxFuel: 300
+  maxFuel: 800
   fuel: 0
-  fuelRefillRate: 0.75
-  fuelUsageRate: 2
+  fuelRefillRate: 1
+  fuelUsageRate: 5
+  fuelIgnitionUsage: 50
   frictionMaterial: {fileID: 13400000, guid: 98f9cfd09b0fb0646b786db90919a3c2, type: 2}
   noFrictionMaterial: {fileID: 13400000, guid: 73ee3a8285610b6419cc5e6793fe91dd, type: 2}
   camLimit: 80
@@ -1386,7 +1387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce69209ddb267f4fb0d808a0862c331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 6000
+  acceleration: 100
   _JumpForce: 3500
 --- !u!114 &11419192
 MonoBehaviour:
@@ -4854,11 +4855,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fuelRefillRate
-      value: 0.75
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxFuel
-      value: 300
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: _JumpForce
@@ -4874,7 +4875,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fuelUsageRate
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: jetpackMaxVelocity
@@ -4882,7 +4883,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: acceleration
-      value: 6000
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -4891,6 +4892,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CullingMask.m_Bits
       value: 4294967039
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fuelIgnitionUsage
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -14,6 +14,7 @@ public class PlayerMotor : MonoBehaviour
     public float fuel;
     public float fuelRefillRate;
     public float fuelUsageRate;
+    public float fuelIgnitionUsage;
 
     [Header("Physics")]
 
@@ -43,7 +44,7 @@ public class PlayerMotor : MonoBehaviour
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
     Vector3 jumpForce = Vector3.zero;
-
+    
     internal bool jetpackRefueling;
     internal bool jetpackMustWaitForFuel;
 
@@ -102,6 +103,10 @@ public class PlayerMotor : MonoBehaviour
         // If we're already using fuel and flying lets continue till we reach 0f.
         if (jumpForce != Vector3.zero && !jetpackMustWaitForFuel)
         {
+            if (jetpackRefueling) // This is the start of jetpack usage- apply an ignition cost
+            {
+                fuel -= fuelIgnitionUsage;
+            }
             jetpackRefueling = false;
             //Generate force and draw fuel
             if (rb.velocity.y < jetpackMaxVelocity)
@@ -139,6 +144,7 @@ public class PlayerMotor : MonoBehaviour
             {
                 // We can still accelerate, so lets do so
                 float velocityMultiplier = remaingingVelocity / maxVelocity; //As velocity->maxVelocity the multiplier->0 and no force is added
+                float directionalMultiplier = GetAngleMultiplier(rb.velocity, movementForce);
                 rb.AddForce(movementForce * velocityMultiplier, ForceMode.Impulse);
             }
             else // Max velocity
@@ -195,25 +201,7 @@ public class PlayerMotor : MonoBehaviour
 
     private Vector3 GetMovementForce4(Vector3 moveDirection, Vector3 velocityDirection)
     {
-        Vector2 forward = new Vector3(velocityDirection.x, velocityDirection.z);
-        Vector2 direction = new Vector3(moveDirection.x, moveDirection.z);
-
-        float angleDiff = Mathf.Abs(Vector2.Angle(forward, direction)); // Should be between 0 and +180, right? (just in radians)
-        float angleMultiplier;
-
-        if (angleDiff >= 90f) // Backwards
-        {
-            angleMultiplier = 1f;
-        }
-        else
-        {
-            float angleInRads = (angleDiff / 360f * Mathf.PI);                 // Angle halved to 0-90 and converted to radians
-            angleMultiplier = Mathf.Sin(angleInRads);
-        }
-
-
-        Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
-        return moveDirection * angleMultiplier;
+        return moveDirection * GetAngleMultiplier(velocityDirection, moveDirection);
     }
 
     private Vector3 GetMovementForce5(Vector3 moveDirection, Vector3 velocityDirection)
@@ -232,6 +220,28 @@ public class PlayerMotor : MonoBehaviour
         Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
 
         return moveDirection * angleMultiplier;
+    }
+
+    private float GetAngleMultiplier(Vector3 currVelocity, Vector3 requestedMovement)
+    {
+        Vector2 forward = new Vector3(currVelocity.x, currVelocity.z);
+        Vector2 direction = new Vector3(requestedMovement.x, requestedMovement.z);
+
+        float angleDiff = Mathf.Abs(Vector2.Angle(forward, direction)); // Should be between 0 and +180, right? (just in radians)
+        float angleMultiplier;
+
+        if (angleDiff >= 90f) // Backwards
+        {
+            angleMultiplier = 1f;
+        }
+        else
+        {
+            float angleInRads = (angleDiff / 360f * Mathf.PI);                 // Angle halved to 0-90 and converted to radians
+            angleMultiplier = Mathf.Sin(angleInRads);
+        }
+
+        Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
+        return angleMultiplier;
     }
 
     public void Rotate(Vector3 _rotation)
