@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private float acceleration = 1f;
 
     [SerializeField]
-    private float _JumpForce = 50f;
+    private float JetpackForce = 50f;
 
     private float xAxis;
     private float zAxis;
@@ -77,11 +77,12 @@ public class PlayerController : MonoBehaviour
         //Jetpack
         if (Input.GetButton("Jump"))
         {
-            Motor.Jump(_JumpForce);
+            Motor.jetpackForce = JetpackForce;
+            Motor.ActivateJetpack();
         }
         else
         {
-            Motor.Jump(0f);
+            Motor.DeactivateJetpack();
         }
     }
 }

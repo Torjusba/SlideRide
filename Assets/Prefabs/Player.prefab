@@ -1362,6 +1362,7 @@ MonoBehaviour:
   emitters:
   - {fileID: 19803288}
   - {fileID: 19859786}
+  jetpackForce: 100
   maxFuel: 800
   fuel: 0
   fuelRefillRate: 1
@@ -1388,7 +1389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   acceleration: 5000
-  _JumpForce: 3500
+  JetpackForce: 500
 --- !u!114 &11419192
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4896,6 +4897,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: fuelIgnitionUsage
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: JetpackForce
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jetpackForce
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

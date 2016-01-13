@@ -10,6 +10,8 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     ParticleSystem[] emitters;
 
+    public float jetpackForce = 50f;
+    
     public float maxFuel;
     public float fuel;
     public float fuelRefillRate;
@@ -39,12 +41,11 @@ public class PlayerMotor : MonoBehaviour
 
     [SerializeField]
     float GravityBoost = 200f;
-    Vector3 gravityForce = Vector3.down * 9.81f;
 
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
-    Vector3 jumpForce = Vector3.zero;
 
+    private bool jetpackEnable; 
     internal bool jetpackRefueling;
     internal bool jetpackMustWaitForFuel;
 
@@ -73,7 +74,7 @@ public class PlayerMotor : MonoBehaviour
 
     void Update()
     {
-        if (jumpForce != Vector3.zero && fuel > 0)
+        if (!jetpackRefueling) // Only true while we use the jetpack
         {
             //Generate jetpack particles
             foreach (ParticleSystem e in emitters)
@@ -93,7 +94,7 @@ public class PlayerMotor : MonoBehaviour
         //Boost gravity
         if (BoostGravity)
         {
-            rb.AddForce(gravityForce * GravityBoost, ForceMode.Force);
+            rb.AddForce(Physics.gravity * GravityBoost, ForceMode.Force);
         }
     }
 
@@ -101,7 +102,7 @@ public class PlayerMotor : MonoBehaviour
     {
         // If the jetpack reached 0 fuel it starts to refuel, so don't let the player use it before we reached at least 50%. 
         // If we're already using fuel and flying lets continue till we reach 0f.
-        if (jumpForce != Vector3.zero && !jetpackMustWaitForFuel)
+        if (jetpackEnable && !jetpackMustWaitForFuel)
         {
             if (jetpackRefueling) // This is the start of jetpack usage- apply an ignition cost
             {
@@ -109,13 +110,14 @@ public class PlayerMotor : MonoBehaviour
             }
             jetpackRefueling = false;
             //Generate force and draw fuel
-            if (rb.velocity.y < jetpackMaxVelocity)
+            float gravityDirection = Vector2.Dot(rb.velocity, -Physics.gravity.normalized);
+            if (gravityDirection < jetpackMaxVelocity)
             {
-                rb.AddForce(jumpForce, ForceMode.Force); // Add jetpack force since we're below maximum velocity
+                rb.AddForce(-Physics.gravity * jetpackForce, ForceMode.Force); // Add jetpack force since we're below maximum
             }
             else
             {
-                rb.AddForce(-gravityForce, ForceMode.Force); // Add just enough to keep us at same velocity in air
+                rb.AddForce(-Physics.gravity, ForceMode.Force); // Add just enough to keep us at same velocity in air
             }
             fuel -= fuelUsageRate;
             if (fuel <= 0f)
@@ -196,7 +198,7 @@ public class PlayerMotor : MonoBehaviour
         Vector3 direction = new Vector3(moveDirection.x, 0f, moveDirection.z);
 
         // Remove the component that goes in the same direction as the velocity
-        Vector3 forwardPart = Vector3.Project(direction, velocityDirection);
+        Vector3 forwardPart = Vector3.Project(direction, forward);
         Vector3 directionalForce = moveDirection - forwardPart;
         return directionalForce;
     }
@@ -266,9 +268,14 @@ public class PlayerMotor : MonoBehaviour
         head.transform.localEulerAngles = new Vector3(currentCameraRotX, 0f, 0f);
     }
 
-    public void Jump(float _jumpForce)
+    public void ActivateJetpack()
     {
-        jumpForce = Vector3.up * _jumpForce;
+        jetpackEnable = true;
+    }
+
+    public void DeactivateJetpack()
+    {
+        jetpackEnable = false;
     }
 
     public void DeactivateFriction()
