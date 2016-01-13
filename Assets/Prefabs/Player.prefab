@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce69209ddb267f4fb0d808a0862c331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 5000
+  acceleration: 12000
   JetpackForce: 500
 --- !u!114 &11419192
 MonoBehaviour:
@@ -4884,7 +4884,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: acceleration
-      value: 5000
+      value: 12000
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
