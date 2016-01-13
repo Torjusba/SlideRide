@@ -44,7 +44,7 @@ public class PlayerMotor : MonoBehaviour
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
     Vector3 jumpForce = Vector3.zero;
-    
+
     internal bool jetpackRefueling;
     internal bool jetpackMustWaitForFuel;
 
@@ -131,7 +131,8 @@ public class PlayerMotor : MonoBehaviour
                 jetpackMustWaitForFuel = false;
             }
         }
-        fuel += fuelRefillRate; // Add fuel regardless
+        if (fuel < maxFuel)
+            fuel += fuelRefillRate; // Add fuel regardless
     }
 
     void PerformMovement()
@@ -143,16 +144,17 @@ public class PlayerMotor : MonoBehaviour
             if (remaingingVelocity >= 0)
             {
                 // We can still accelerate, so lets do so
-                float velocityMultiplier = remaingingVelocity / maxVelocity; //As velocity->maxVelocity the multiplier->0 and no force is added
-                float directionalMultiplier = GetAngleMultiplier(rb.velocity, movementForce);
-                rb.AddForce(movementForce * velocityMultiplier, ForceMode.Impulse);
+                //float velocityMultiplier = remaingingVelocity / maxVelocity; //As velocity->maxVelocity the multiplier->0 and no force is added
+                //float directionalMultiplier = GetAngleMultiplier(rb.velocity, movementForce);
+
+                rb.AddForce(movementForce, ForceMode.Force);
             }
             else // Max velocity
             {
                 // We can't accelerate any more, but we should still be able to change direction
                 Vector3 force = GetMovementForce4(movementForce, rb.velocity);
 
-                rb.AddForce(force, ForceMode.Impulse);
+                rb.AddForce(force, ForceMode.Force);
             }
         }
     }
