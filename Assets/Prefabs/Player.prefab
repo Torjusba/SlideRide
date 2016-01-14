@@ -1362,7 +1362,7 @@ MonoBehaviour:
   emitters:
   - {fileID: 19803288}
   - {fileID: 19859786}
-  jetpackForce: 100
+  jetpackForce: 70
   maxFuel: 800
   fuel: 0
   fuelRefillRate: 1
@@ -1375,8 +1375,8 @@ MonoBehaviour:
   head: {fileID: 403062}
   BoostGravity: 0
   GravityBoost: 300
-  maxVelocity: 15
-  jetpackMaxVelocity: 15
+  maxVelocity: 10
+  jetpackMaxVelocity: 10
 --- !u!114 &11417920
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1388,7 +1388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ce69209ddb267f4fb0d808a0862c331, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 12000
+  acceleration: 2500
   JetpackForce: 500
 --- !u!114 &11419192
 MonoBehaviour:
@@ -4776,7 +4776,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Drag
-      value: 0.8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_UseGravity
@@ -4872,7 +4872,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: maxVelocity
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: fuelUsageRate
@@ -4880,11 +4880,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: jetpackMaxVelocity
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: acceleration
-      value: 12000
+      value: 2500
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Layer
@@ -4904,7 +4904,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: jetpackForce
-      value: 100
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
