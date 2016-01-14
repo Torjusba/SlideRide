@@ -39,7 +39,7 @@ public class FireWeapon : NetworkBehaviour
     [Command]
     void Cmdfire()
     {
-        GameObject bullet = (GameObject)Instantiate(bulletPrefab, barrel.position + barrel.forward * 2, barrel.rotation);
+        GameObject bullet = (GameObject)Instantiate(bulletPrefab, barrel.position + barrel.forward, barrel.rotation);
         bullet.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
 
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();

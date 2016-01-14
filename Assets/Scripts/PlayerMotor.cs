@@ -11,7 +11,7 @@ public class PlayerMotor : MonoBehaviour
     ParticleSystem[] emitters;
 
     public float jetpackForce = 50f;
-    
+
     public float maxFuel;
     public float fuel;
     public float fuelRefillRate;
@@ -45,7 +45,7 @@ public class PlayerMotor : MonoBehaviour
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
 
-    private bool jetpackEnable; 
+    private bool jetpackEnable;
     internal bool jetpackRefueling;
     internal bool jetpackMustWaitForFuel;
 
@@ -156,6 +156,11 @@ public class PlayerMotor : MonoBehaviour
                 // We can't accelerate any more, but we should still be able to change direction
                 Vector3 force = GetMovementForce4(movementForce, rb.velocity);
 
+                float forwardMagnitude = Vector3.Dot(force, rb.velocity.normalized);
+                Vector3 forwardComponent = rb.velocity.normalized * forwardMagnitude;
+                if (forwardMagnitude > 0f)
+                    force -= forwardComponent;
+
                 rb.AddForce(force, ForceMode.Force);
             }
         }
@@ -221,8 +226,6 @@ public class PlayerMotor : MonoBehaviour
         else
             angleMultiplier = Mathf.Sin(angleDiff); // Gradually go from 0 to 1
 
-        Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
-
         return moveDirection * angleMultiplier;
     }
 
@@ -240,11 +243,11 @@ public class PlayerMotor : MonoBehaviour
         }
         else
         {
-            float angleInRads = (angleDiff / 360f * Mathf.PI);                 // Angle halved to 0-90 and converted to radians
+            float angleInRads = (angleDiff / 180f * Mathf.PI) / 2f;                 // Angle halved to 0-90 and converted to radians
             angleMultiplier = Mathf.Sin(angleInRads);
         }
 
-        Debug.LogFormat("A {0:0.0}, M {1:0.0}", angleDiff, angleMultiplier);
+        Debug.LogFormat("A {0:0.0}, M {1:0.0}, V {2:0.0}", angleDiff, angleMultiplier, currVelocity);
         return angleMultiplier;
     }
 
