@@ -283,14 +283,12 @@ public class PlayerMotor : MonoBehaviour
 
     public void DeactivateFriction()
     {
-        rb.drag = 0;
         gameObject.GetComponent<Collider>().material = noFrictionMaterial;
     }
 
 
     public void ActivateFriction()
     {
-        rb.drag = 0;
         gameObject.GetComponent<Collider>().material = frictionMaterial;
     }
 
