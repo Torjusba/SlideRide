@@ -248,9 +248,10 @@ public class PlayerMotor : MonoBehaviour
             angleMultiplier = Mathf.Sin(angleInRads);
         }
 
-        Debug.LogFormat("A {0:0.0}, M {1:0.0}, V {2:0.0}", angleDiff, angleMultiplier, currVelocity);
+        // Debug.LogFormat("A {0:0.0}, M {1:0.0}, V {2:0.0}", angleDiff, angleMultiplier, currVelocity);
         return angleMultiplier;
     }
+
 
     public void Rotate(Vector3 _rotation)
     {
