@@ -113,7 +113,7 @@ MonoBehaviour:
     i14: 123
     i15: 77
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &11417188
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -212,7 +212,7 @@ Prefab:
       objectReference: {fileID: 173920, guid: 5a920eb2891f6ca42bb91093a14b7273, type: 2}
     - target: {fileID: 0}
       propertyPath: m_LocalPlayerAuthority
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_SendInterval
