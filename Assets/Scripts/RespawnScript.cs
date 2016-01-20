@@ -22,18 +22,16 @@ public class RespawnScript : NetworkBehaviour
         if (!respawning)
         {
             respawning = true;
-            Debug.Log("Respawned");
-            //StartCoroutine(respawnTimer(oldPlayer));
-            CmdSpawnPlayer(oldPlayer);
-            respawning = false;
+            StartCoroutine(respawnTimer(oldPlayer));
         }
     }
 
     IEnumerator respawnTimer(GameObject oldPlayer)
     {
         oldPlayer.SetActive(false);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(0f); // No timeout currently
         CmdSpawnPlayer(oldPlayer);
+        Debug.Log("Respawned");
         respawning = false;
     }
 

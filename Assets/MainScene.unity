@@ -1301,10 +1301,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!4 &763514388 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 450232, guid: 9f766f2978a413749be6e9a24d845c02, type: 2}
-  m_PrefabInternal: {fileID: 1950650852}
 --- !u!1 &764869579
 GameObject:
   m_ObjectHideFlags: 0
@@ -1496,19 +1492,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 763514388}
+    m_TransformParent: {fileID: 1426655994}
     m_Modifications:
     - target: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 221.20572
+      value: 222.79999
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.229
+      value: -32.071
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 37.728687
+      value: 29.8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1528,7 +1524,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
       propertyPath: m_Name
@@ -1569,6 +1565,10 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 4, z: 4}
   m_Center: {x: 0.0000005364418, y: 1.9999999, z: 0}
+--- !u!4 &829198043 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
+  m_PrefabInternal: {fileID: 829198039}
 --- !u!1001 &867592821
 Prefab:
   m_ObjectHideFlags: 0
@@ -2173,6 +2173,7 @@ Transform:
   - {fileID: 530714242}
   - {fileID: 523155158}
   - {fileID: 326262690}
+  - {fileID: 829198043}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!1001 &1447820111

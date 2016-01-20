@@ -10,9 +10,9 @@ public class KillMessageScript : MonoBehaviour
 
     void Start()
     {
+        Destroy(gameObject, 3f);
+
         Text killMessage = gameObject.GetComponentInChildren<Text>();
         killMessage.text = owner.name + " has killed " + target.name;
-
-        Destroy(gameObject, 3f);
     }
 }
