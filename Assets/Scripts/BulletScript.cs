@@ -22,47 +22,57 @@ public class BulletScript : NetworkBehaviour
             return;
         
         GetComponent<Rigidbody>().velocity += direction * velocity;
-
         Destroy(gameObject, range); // Destroys the object after range seconds.
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        bool destroyThis = true;
-        //If it hits a player, kill it
-        if (collision.collider.tag == "Player")
+        if (base.isServer)
         {
-            Player target = GameManager.GetPlayer(collision.collider.name);
-
-            //If the target is not the player who fired, kill
-            if (target != owner && target != null && owner != null)
+            bool destroyThis = true;
+            //If it hits a player, kill it
+            if (collision.collider.tag == "Player")
             {
-                target.Die();
+                Player target = GameManager.GetPlayer(collision.collider.name);
 
-                GameObject killMessage = Instantiate(killMessagePrefab);
-                KillMessageScript kms = killMessage.GetComponent<KillMessageScript>();
-                kms.owner = owner;
-                kms.target = target;
+                //If the target is not the player who fired, kill
+                if (target != owner && target != null && owner != null)
+                {
+                    target.Die();
 
-                Debug.Log(target.name + " was killed by " + owner.name);
+                    GameObject killMessage = Instantiate(killMessagePrefab);
+                    KillMessageScript kms = killMessage.GetComponent<KillMessageScript>();
+                    kms.owner = owner;
+                    kms.target = target;
+
+                    Debug.Log(target.name + " was killed by " + owner.name);
+                }
+                else
+                {
+                    destroyThis = false;
+                }
             }
-            else
+
+            if (destroyThis)
             {
-                destroyThis = false;
+                //Create fragments
+                for (int i = 0; i < 8; i++)
+                {
+                    Vector3 fragmentPosition = transform.position;
+                    fragmentPosition += Random.rotation.eulerAngles.normalized * 0.1f;
+
+                    CmdCreateFragment(fragmentPosition);
+                }
+                Destroy(gameObject);
             }
         }
+    }
 
-        if (destroyThis)
-        {
-            //Create fragments
-            for (int i = 0; i < 7; i++)
-            {
-                Vector3 fragmentPosition = transform.position;
-                fragmentPosition += Random.rotation.eulerAngles.normalized * 0.1f;
-
-                Instantiate(fragment, fragmentPosition, transform.rotation);
-            }
-            Destroy(gameObject);
-        }
+    [Command]
+    void CmdCreateFragment(Vector3 position)
+    {
+        GameObject obj = Instantiate(fragment, position, transform.rotation) as GameObject;
+        Destroy(obj, 2f);
+        NetworkServer.Spawn(obj);
     }
 }

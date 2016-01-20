@@ -69,11 +69,13 @@ public class CustomNetworkManager : NetworkManager
     public override void OnClientError(NetworkConnection conn, int errorCode)
     {
         base.OnClientError(conn, errorCode);
+        Debug.Log("Client error " + errorCode.ToString());
         SceneManager.LoadScene("MainScene");
     }
 
     public override void OnClientDisconnect(NetworkConnection c)
     {
-        SceneManager.LoadScene("MainScene");
+        Debug.Log("Client disconnect");
+        DisconnectFromServer();
     }
 }
