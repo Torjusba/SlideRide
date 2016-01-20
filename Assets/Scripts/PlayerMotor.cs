@@ -18,6 +18,9 @@ public class PlayerMotor : MonoBehaviour
     public float fuelUsageRate;
     public float fuelIgnitionUsage;
 
+    public float gravityFuelUsage;
+    public float gravityInitUsafe;
+
     [Header("Physics")]
 
     [SerializeField]
@@ -37,10 +40,10 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private Transform head;
 
-    public bool BoostGravity = false;
 
     [SerializeField]
     float GravityBoost = 200f;
+    internal bool BoostGravity = false;
 
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
@@ -91,10 +94,14 @@ public class PlayerMotor : MonoBehaviour
 
     void ApplyGravity()
     {
+        if (fuel < gravityFuelUsage)
+            return;
+
         //Boost gravity
         if (BoostGravity)
         {
             rb.AddForce(Physics.gravity * GravityBoost, ForceMode.Force);
+            fuel -= gravityFuelUsage;
         }
     }
 
@@ -283,15 +290,31 @@ public class PlayerMotor : MonoBehaviour
         jetpackEnable = false;
     }
 
-    public void DeactivateFriction()
+    public void ActivateGravityBoost()
     {
-        gameObject.GetComponent<Collider>().material = noFrictionMaterial;
+        if (!BoostGravity)
+        {
+            if (fuel > gravityInitUsafe)
+            {
+                fuel -= gravityInitUsafe;
+                BoostGravity = true;
+            }
+        }
     }
 
+    public void DeactivateGravityBoost()
+    {
+        BoostGravity = false;
+    }
 
     public void ActivateFriction()
     {
         gameObject.GetComponent<Collider>().material = frictionMaterial;
+    }
+    
+    public void DeactivateFriction()
+    {
+        gameObject.GetComponent<Collider>().material = noFrictionMaterial;
     }
 
 

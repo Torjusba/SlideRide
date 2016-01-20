@@ -1443,12 +1443,13 @@ MonoBehaviour:
   fuelRefillRate: 1
   fuelUsageRate: 5
   fuelIgnitionUsage: 50
+  gravityFuelUsage: 3
+  gravityInitUsafe: 0
   frictionMaterial: {fileID: 13400000, guid: 98f9cfd09b0fb0646b786db90919a3c2, type: 2}
   noFrictionMaterial: {fileID: 13400000, guid: 73ee3a8285610b6419cc5e6793fe91dd, type: 2}
   camLimit: 80
   cam: {fileID: 2030208}
   head: {fileID: 403062}
-  BoostGravity: 0
   GravityBoost: 300
   maxVelocity: 10
   jetpackMaxVelocity: 10
@@ -5027,6 +5028,10 @@ Prefab:
       propertyPath: blasterSound
       value: 
       objectReference: {fileID: 8300000, guid: 09f56d2c32579794695e9ce2bea2c596, type: 3}
+    - target: {fileID: 0}
+      propertyPath: gravityFuelUsage
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 115724}

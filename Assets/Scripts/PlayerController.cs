@@ -48,7 +48,14 @@ public class PlayerController : MonoBehaviour
         }
 
         //Boost gravity?
-        Motor.BoostGravity = Input.GetButton("Boost Gravity");
+        if (Input.GetButton("Boost Gravity"))
+        {
+            Motor.ActivateGravityBoost();
+        }
+        else
+        {
+            Motor.DeactivateGravityBoost();
+        }
 
 
 
