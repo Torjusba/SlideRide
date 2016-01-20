@@ -156,6 +156,7 @@ public class PlayerMotor : MonoBehaviour
                 // We can't accelerate any more, but we should still be able to change direction
                 Vector3 force = GetMovementForce4(movementForce, rb.velocity);
 
+                // If the magnitude forward is larger than 0, remove it
                 float forwardMagnitude = Vector3.Dot(force, rb.velocity.normalized);
                 Vector3 forwardComponent = rb.velocity.normalized * forwardMagnitude;
                 if (forwardMagnitude > 0f)

@@ -14,7 +14,16 @@ public class FireWeapon : NetworkBehaviour
     [SerializeField]
     private PlayerWeapon weapon;
 
+    [SerializeField]
+    private AudioClip blasterSound;
+
+    public AudioSource audioSource;
+
     bool hasFiredRecently = false;
+
+    void Start()
+    {
+    }
 
     void Update()
     {
@@ -31,9 +40,15 @@ public class FireWeapon : NetworkBehaviour
     {
         hasFiredRecently = true;
         Cmdfire();
+        PlaySound();
         yield return new WaitForSeconds(0.1f);
         hasFiredRecently = false;
         
+    }
+    
+    public void PlaySound()
+    {
+        audioSource.PlayOneShot(blasterSound);
     }
 
     [Command]
