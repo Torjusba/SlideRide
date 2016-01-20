@@ -23,10 +23,10 @@ public class FPSDisplay : MonoBehaviour
         style.alignment = TextAnchor.UpperLeft;
         style.fontSize = h * 2 / 100;
 
-        if (fps < 30)
-            style.normal.textColor = Color.yellow;
-        else if (fps < 10)
+        if (fps < 10)
             style.normal.textColor = Color.red;
+        else if (fps < 30)
+            style.normal.textColor = Color.yellow;
         else
             style.normal.textColor = Color.white;
 
