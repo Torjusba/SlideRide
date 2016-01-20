@@ -35,7 +35,7 @@ public class PlayerMotor : MonoBehaviour
     [Header("Objects")]
 
     [SerializeField]
-    private Camera cam;
+    internal Camera cam;
 
     [SerializeField]
     private Transform head;
@@ -311,7 +311,7 @@ public class PlayerMotor : MonoBehaviour
     {
         gameObject.GetComponent<Collider>().material = frictionMaterial;
     }
-    
+
     public void DeactivateFriction()
     {
         gameObject.GetComponent<Collider>().material = noFrictionMaterial;
