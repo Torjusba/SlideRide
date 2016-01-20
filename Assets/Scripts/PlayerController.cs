@@ -57,7 +57,14 @@ public class PlayerController : MonoBehaviour
             Motor.DeactivateGravityBoost();
         }
 
-
+        if (Input.GetButton("Scope"))
+        {
+            Motor.cam.fieldOfView = 10f;
+        }
+        else
+        {
+            Motor.cam.ResetFieldOfView();
+        }
 
 
         //Move player
