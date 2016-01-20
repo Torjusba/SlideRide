@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0047a9058f0654341a4065393cb2f169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  killMessagePrefab: {fileID: 173920, guid: 5a920eb2891f6ca42bb91093a14b7273, type: 2}
   fragment: {fileID: 146146, guid: 3b6ab00f107caa448b6116ff739cd46a, type: 2}
+  owner: {fileID: 0}
   range: 0
   direction: {x: 0, y: 0, z: 0}
   velocity: 0
@@ -204,6 +206,10 @@ Prefab:
       propertyPath: m_CollisionDetection
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: killMessagePrefab
+      value: 
+      objectReference: {fileID: 173920, guid: 5a920eb2891f6ca42bb91093a14b7273, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 106952}
