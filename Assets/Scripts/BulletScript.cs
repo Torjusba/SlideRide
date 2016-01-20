@@ -28,13 +28,14 @@ public class BulletScript : NetworkBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        bool destroyThis = true;
         //If it hits a player, kill it
         if (collision.collider.tag == "Player")
         {
             Player target = GameManager.GetPlayer(collision.collider.name);
 
             //If the target is not the player who fired, kill
-            if (target != owner)
+            if (target != owner && target != null && owner != null)
             {
                 target.Die();
 
@@ -45,16 +46,23 @@ public class BulletScript : NetworkBehaviour
 
                 Debug.Log(target.name + " was killed by " + owner.name);
             }
+            else
+            {
+                destroyThis = false;
+            }
         }
 
-        //Create fragments
-        for (int i = 0; i < 7; i++)
+        if (destroyThis)
         {
-            Vector3 fragmentPosition = transform.position;
-            fragmentPosition += Random.rotation.eulerAngles.normalized * 0.1f;
+            //Create fragments
+            for (int i = 0; i < 7; i++)
+            {
+                Vector3 fragmentPosition = transform.position;
+                fragmentPosition += Random.rotation.eulerAngles.normalized * 0.1f;
 
-            Instantiate(fragment, fragmentPosition, transform.rotation);
+                Instantiate(fragment, fragmentPosition, transform.rotation);
+            }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
 }
