@@ -48,6 +48,7 @@ public class FireWeapon : NetworkBehaviour
     
     public void PlaySound()
     {
+        audioSource.pitch = Random.Range(0.7f, 1.5f);
         audioSource.PlayOneShot(blasterSound);
     }
 
