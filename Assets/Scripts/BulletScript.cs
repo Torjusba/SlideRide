@@ -5,10 +5,13 @@ using UnityEngine.Networking;
 
 public class BulletScript : NetworkBehaviour
 {
+    [SerializeField]
+    GameObject killMessagePrefab;
 
     [SerializeField]
     GameObject fragment;
 
+    public Player owner;
     public int range;
     public Vector3 direction;
     public float velocity;
@@ -29,7 +32,19 @@ public class BulletScript : NetworkBehaviour
         if (collision.collider.tag == "Player")
         {
             Player target = GameManager.GetPlayer(collision.collider.name);
-            target.Die();
+
+            //If the target is not the player who fired, kill
+            if (target != owner)
+            {
+                target.Die();
+
+                GameObject killMessage = Instantiate(killMessagePrefab);
+                KillMessageScript kms = killMessage.GetComponent<KillMessageScript>();
+                kms.owner = owner;
+                kms.target = target;
+
+                Debug.Log(target.name + " was killed by " + owner.name);
+            }
         }
 
         //Create fragments
