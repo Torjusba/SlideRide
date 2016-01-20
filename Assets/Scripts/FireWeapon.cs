@@ -58,6 +58,7 @@ public class FireWeapon : NetworkBehaviour
         bullet.GetComponent<Rigidbody>().velocity = gameObject.GetComponent<Rigidbody>().velocity;
 
         BulletScript bulletScript = bullet.GetComponent<BulletScript>();
+        bulletScript.owner = this.GetComponentInParent<Player>();
         bulletScript.range = weapon.range;
         bulletScript.direction = barrel.forward;
         bulletScript.velocity = weapon.muzzleVelocity;
