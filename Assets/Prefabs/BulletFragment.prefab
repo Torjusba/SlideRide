@@ -10,9 +10,10 @@ GameObject:
   - 4: {fileID: 458162}
   - 33: {fileID: 3321588}
   - 23: {fileID: 2369208}
-  - 114: {fileID: 11463564}
   - 54: {fileID: 5426854}
   - 65: {fileID: 6549556}
+  - 114: {fileID: 11478892}
+  - 114: {fileID: 11426130}
   m_Layer: 0
   m_Name: BulletFragment
   m_TagString: Untagged
@@ -92,7 +93,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 2, z: 4}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &11463564
+--- !u!114 &11426130
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -100,10 +101,50 @@ MonoBehaviour:
   m_GameObject: {fileID: 146146}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ef702e4f42fc6f498e98234fc72f2d4, type: 3}
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 2
+  m_TransformSyncMode: 3
+  m_SendInterval: 0.033333335
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 1
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
+--- !u!114 &11478892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 146146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 59
+    i1: 106
+    i2: 176
+    i3: 15
+    i4: 16
+    i5: 124
+    i6: 170
+    i7: 68
+    i8: 139
+    i9: 97
+    i10: 22
+    i11: 255
+    i12: 115
+    i13: 156
+    i14: 212
+    i15: 106
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -130,6 +171,82 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_CollisionDetection
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i0
+      value: 59
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i1
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i2
+      value: 176
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i3
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i4
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i5
+      value: 124
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i6
+      value: 170
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i7
+      value: 68
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i8
+      value: 139
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i9
+      value: 97
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i10
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i11
+      value: 255
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i12
+      value: 115
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i13
+      value: 156
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i14
+      value: 212
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_AssetId.i15
+      value: 106
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPlayerAuthority
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SendInterval
+      value: 0.033333335
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_SyncSpin
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
