@@ -30,7 +30,7 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
-
+            gameObject.GetComponent<Player>().name = GameManager.localPlayerName;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             sceneCamera = Camera.main;

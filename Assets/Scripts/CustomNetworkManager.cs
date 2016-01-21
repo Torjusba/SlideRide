@@ -8,6 +8,9 @@ public class CustomNetworkManager : NetworkManager
 {
 
     [SerializeField]
+    Text playerName;
+
+    [SerializeField]
     Text IPAddress;
 
     [Header("Menus")]
@@ -25,6 +28,7 @@ public class CustomNetworkManager : NetworkManager
 
     public void StartNewHost()
     {
+        GameManager.localPlayerName = playerName.text;
         SetIP();
         SetPort();
         NetworkManager.singleton.StartHost();
@@ -33,6 +37,7 @@ public class CustomNetworkManager : NetworkManager
 
     public void StartNewClient()
     {
+        GameManager.localPlayerName = playerName.name;
         SetIP();
         SetPort();
         NetworkManager.singleton.StartClient();
