@@ -28,7 +28,7 @@ public class CustomNetworkManager : NetworkManager
 
     public void StartNewHost()
     {
-        GameManager.localPlayerName = playerName.text;
+        SetPlayerName();
         SetIP();
         SetPort();
         NetworkManager.singleton.StartHost();
@@ -37,7 +37,7 @@ public class CustomNetworkManager : NetworkManager
 
     public void StartNewClient()
     {
-        GameManager.localPlayerName = playerName.name;
+        SetPlayerName();
         SetIP();
         SetPort();
         NetworkManager.singleton.StartClient();
@@ -56,6 +56,18 @@ public class CustomNetworkManager : NetworkManager
     void SetPort()
     {
         NetworkManager.singleton.networkPort = 7777;
+    }
+
+    void SetPlayerName()
+    {
+        if (playerName.text != "")
+        {
+            GameManager.localPlayerName = playerName.text;
+        }
+        else
+        {
+            GameManager.localPlayerName = "Sample Name";
+        }
     }
 
     public void DisconnectFromServer()
