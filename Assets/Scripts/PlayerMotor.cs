@@ -19,7 +19,7 @@ public class PlayerMotor : MonoBehaviour
     public float fuelIgnitionUsage;
 
     public float gravityFuelUsage;
-    public float gravityInitUsafe;
+    public float gravityInitUsage;
 
     [Header("Physics")]
 
@@ -294,9 +294,9 @@ public class PlayerMotor : MonoBehaviour
     {
         if (!BoostGravity)
         {
-            if (fuel > gravityInitUsafe)
+            if (fuel > gravityInitUsage)
             {
-                fuel -= gravityInitUsafe;
+                fuel -= gravityInitUsage;
                 BoostGravity = true;
             }
         }
