@@ -7,11 +7,13 @@ public class Player : NetworkBehaviour
     [SerializeField]
     PlayerMotor motor;
 
+    Camera mainCamera;
 
     public bool isAlive;
-
+    
     void Awake()
     {
+        mainCamera = gameObject.GetComponentInChildren<Camera>();
         isAlive = true;
     }
 
@@ -33,5 +35,12 @@ public class Player : NetworkBehaviour
     public void Die()
     {
         isAlive = false;
+    }
+
+    void OnGUI()
+    {
+        Vector2 playerPosOnScreen = mainCamera.WorldToScreenPoint(gameObject.GetComponent<Transform>().position);
+
+        GUI.Label(new Rect(playerPosOnScreen.x - 10, playerPosOnScreen.y - 10, 20, 20), name);
     }
 }

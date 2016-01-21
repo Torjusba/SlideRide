@@ -4,6 +4,8 @@ using System.Collections.Generic;
 public class GameManager : MonoBehaviour
 {
 
+    public static string localPlayerName;
+
     public static RespawnScript respawnScript;
 
     public static void respawn(GameObject oldPlayer)
@@ -12,6 +14,11 @@ public class GameManager : MonoBehaviour
     }
 
     private static Dictionary<string, Player> players = new Dictionary<string, Player>();
+
+    public static Dictionary<string, Player> getPlayers()
+    {
+        return players;
+    }
 
     public static void RegisterPlayer(string netID, Player player)
     {
