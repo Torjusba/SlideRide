@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMotor Motor;
 
+    private Camera camera;
+
     [SerializeField]
     private float acceleration = 1f;
 
@@ -21,6 +23,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Motor = GetComponent<PlayerMotor>();
+        camera = GetComponentInChildren<Camera>();
     }
 
     void Update()
@@ -59,11 +62,11 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButton("Scope"))
         {
-            Motor.cam.fieldOfView = 10f;
+            camera.fieldOfView = 10f;
         }
         else
         {
-            Motor.cam.ResetFieldOfView();
+            camera.fieldOfView = 60f;
         }
 
 

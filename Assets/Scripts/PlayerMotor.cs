@@ -26,16 +26,12 @@ public class PlayerMotor : MonoBehaviour
     [Header("Objects")]
 
     [SerializeField]
-    internal Camera cam;
-
-    [SerializeField]
     private Transform head;
 
     public EnergyContainer battery;
 
     [SerializeField]
     float GravityBoost = 200f;
-    internal bool BoostGravity = false;
 
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
