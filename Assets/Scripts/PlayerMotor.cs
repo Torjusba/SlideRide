@@ -11,16 +11,7 @@ public class PlayerMotor : MonoBehaviour
     ParticleSystem[] emitters;
 
     public float jetpackForce = 50f;
-
-    public float maxFuel;
-    public float fuel;
-    public float fuelRefillRate;
-    public float fuelUsageRate;
-    public float fuelIgnitionUsage;
-
-    public float gravityFuelUsage;
-    public float gravityInitUsage;
-
+    
     [Header("Physics")]
 
     [SerializeField]
@@ -40,6 +31,7 @@ public class PlayerMotor : MonoBehaviour
     [SerializeField]
     private Transform head;
 
+    public EnergyContainer battery;
 
     [SerializeField]
     float GravityBoost = 200f;
@@ -47,10 +39,6 @@ public class PlayerMotor : MonoBehaviour
 
     Vector3 movementForce = Vector3.zero;
     Vector3 rotation = Vector3.zero;
-
-    private bool jetpackEnable;
-    internal bool jetpackRefueling;
-    internal bool jetpackMustWaitForFuel;
 
     float camRotationX = 0f;
 
@@ -62,9 +50,6 @@ public class PlayerMotor : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        fuel = maxFuel;
-        jetpackRefueling = false;
-        jetpackMustWaitForFuel = false;
     }
 
     void FixedUpdate()
@@ -77,7 +62,7 @@ public class PlayerMotor : MonoBehaviour
 
     void Update()
     {
-        if (!jetpackRefueling) // Only true while we use the jetpack
+        if (battery.IsJetpackEnabled()) // Only true while we use the jetpack
         {
             //Generate jetpack particles
             foreach (ParticleSystem e in emitters)
@@ -94,29 +79,17 @@ public class PlayerMotor : MonoBehaviour
 
     void ApplyGravity()
     {
-        if (fuel < gravityFuelUsage)
-            return;
-
         //Boost gravity
-        if (BoostGravity)
+        if (battery.IsGravityEnabled())
         {
             rb.AddForce(Physics.gravity * GravityBoost, ForceMode.Force);
-            fuel -= gravityFuelUsage;
         }
     }
 
     void ApplyJetpack()
     {
-        // If the jetpack reached 0 fuel it starts to refuel, so don't let the player use it before we reached at least 50%. 
-        // If we're already using fuel and flying lets continue till we reach 0f.
-        if (jetpackEnable && !jetpackMustWaitForFuel)
+        if (battery.IsJetpackEnabled())
         {
-            if (jetpackRefueling) // This is the start of jetpack usage- apply an ignition cost
-            {
-                fuel -= fuelIgnitionUsage;
-            }
-            jetpackRefueling = false;
-            //Generate force and draw fuel
             float gravityDirection = Vector2.Dot(rb.velocity, -Physics.gravity.normalized);
             if (gravityDirection < jetpackMaxVelocity)
             {
@@ -126,22 +99,7 @@ public class PlayerMotor : MonoBehaviour
             {
                 rb.AddForce(-Physics.gravity, ForceMode.Force); // Add just enough to keep us at same velocity in air
             }
-            fuel -= fuelUsageRate;
-            if (fuel <= 0f)
-            {
-                jetpackMustWaitForFuel = true;
-            }
         }
-        else
-        {
-            jetpackRefueling = true;
-            if (fuel >= maxFuel * 0.5f) // Enough fuel to start the jetpack again
-            {
-                jetpackMustWaitForFuel = false;
-            }
-        }
-        if (fuel < maxFuel)
-            fuel += fuelRefillRate; // Add fuel regardless
     }
 
     void PerformMovement()
@@ -282,30 +240,24 @@ public class PlayerMotor : MonoBehaviour
 
     public void ActivateJetpack()
     {
-        jetpackEnable = true;
+        battery.EnableJetpackIfPossible(true);
     }
 
     public void DeactivateJetpack()
     {
-        jetpackEnable = false;
+        battery.EnableJetpackIfPossible(false);
     }
 
     public void ActivateGravityBoost()
     {
-        if (!BoostGravity)
-        {
-            if (fuel > gravityInitUsage)
-            {
-                fuel -= gravityInitUsage;
-                BoostGravity = true;
-            }
-        }
+        battery.EnableGravityIfPossible(true);
     }
 
     public void DeactivateGravityBoost()
     {
-        BoostGravity = false;
+        battery.EnableGravityIfPossible(false);
     }
+
 
     public void ActivateFriction()
     {

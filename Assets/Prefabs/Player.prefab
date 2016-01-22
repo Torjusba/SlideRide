@@ -90,6 +90,7 @@ GameObject:
   - 114: {fileID: 11419194}
   - 114: {fileID: 11499396}
   - 82: {fileID: 8296742}
+  - 114: {fileID: 11497982}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -684,7 +685,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 115724}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.15, y: 45.58, z: -6.47}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 403062}
@@ -1419,7 +1420,7 @@ MonoBehaviour:
   - {fileID: 2331390}
   - {fileID: 2366920}
   - {fileID: 2365896}
-  motor: {fileID: 11407272}
+  battery: {fileID: 11497982}
   materials:
   - {fileID: 2100000, guid: 7c95e832b53c6054e9ba379117451879, type: 2}
   - {fileID: 2100000, guid: c41fcd63d84c36c4389497567160880a, type: 2}
@@ -1438,18 +1439,12 @@ MonoBehaviour:
   - {fileID: 19803288}
   - {fileID: 19859786}
   jetpackForce: 70
-  maxFuel: 800
-  fuel: 0
-  fuelRefillRate: 1
-  fuelUsageRate: 5
-  fuelIgnitionUsage: 50
-  gravityFuelUsage: 3
-  gravityInitUsafe: 0
   frictionMaterial: {fileID: 13400000, guid: 98f9cfd09b0fb0646b786db90919a3c2, type: 2}
   noFrictionMaterial: {fileID: 13400000, guid: 73ee3a8285610b6419cc5e6793fe91dd, type: 2}
   camLimit: 80
   cam: {fileID: 2030208}
   head: {fileID: 403062}
+  battery: {fileID: 11497982}
   GravityBoost: 300
   maxVelocity: 10
   jetpackMaxVelocity: 10
@@ -1669,6 +1664,26 @@ MonoBehaviour:
   - {fileID: 11419194}
   - {fileID: 11443318}
   remoteLayerName: RemotePlayer
+--- !u!114 &11497982
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 115724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ef13127ef32a143898602566b4b067, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: 0
+  maxEnergy: 100
+  jetpackEnergyUsage: 15
+  gravityEnergyUsage: 5
+  jetpackIgnitionEnergyUsage: 10
+  gravityIgnitionEnergyUsage: 0
+  jetpackCooldownMinEnergy: 0
+  gravityCooldownMinEnergy: 0
+  energyRefillRate: 10
 --- !u!114 &11498658
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -5031,6 +5046,38 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: gravityFuelUsage
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: battery
+      value: 
+      objectReference: {fileID: 11497982}
+    - target: {fileID: 0}
+      propertyPath: maxEnergy
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jetpackIgnitionEnergyUsage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jetpackCooldownMinEnergy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gravityCooldownMinEnergy
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: energyRefillRate
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jetpackEnergyUsage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: gravityEnergyUsage
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
