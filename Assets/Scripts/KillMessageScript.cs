@@ -5,14 +5,21 @@ using UnityEngine.UI;
 public class KillMessageScript : MonoBehaviour
 {
 
-    public Player owner;
-    public Player target;
+    public string owner = "2312";
+    public string target = "btis";
+
+    Text killMessage;
 
     void Start()
     {
         Destroy(gameObject, 3f);
 
-        Text killMessage = gameObject.GetComponentInChildren<Text>();
-        killMessage.text = owner.name + " has killed " + target.name;
+        killMessage = gameObject.GetComponentInChildren<Text>();
+        killMessage.text = owner + " has killed " + target;
+    }
+
+    void Update()
+    {
+        killMessage.text = owner + " has killed " + target;
     }
 }
