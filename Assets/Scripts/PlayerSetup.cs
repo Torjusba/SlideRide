@@ -30,7 +30,18 @@ public class PlayerSetup : NetworkBehaviour
         }
         else
         {
-            gameObject.GetComponent<Player>().name = GameManager.localPlayerName;
+            string newName = GameManager.localPlayerName;
+            string objName = gameObject.name;
+
+            if (isServer)
+            {
+                gameObject.GetComponent<Player>().playerName = newName;
+                RpcSetName(objName, newName);
+            } else
+            {
+                CmdSetName(objName, newName);
+            }
+
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             sceneCamera = Camera.main;
@@ -89,5 +100,19 @@ public class PlayerSetup : NetworkBehaviour
         GameManager.UnRegisterPlayer(transform.name);
     }
 
+    [Command]
+    void CmdSetName(string objName, string newName)
+    {
+        GameObject newPlayer = GameObject.Find(objName);
+        newPlayer.GetComponent<Player>().playerName = newName;
 
+        RpcSetName(objName, newName);
+    }
+
+    [ClientRpc]
+    void RpcSetName(string objName, string newName)
+    {
+        GameObject newPlayer = GameObject.Find(objName);
+        newPlayer.GetComponent<Player>().playerName = newName;  
+    }
 }
