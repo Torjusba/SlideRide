@@ -4,6 +4,8 @@ using UnityEngine.Networking;
 public class Player : NetworkBehaviour
 {
 
+    public string playerName;
+
     [SerializeField]
     PlayerMotor motor;
 
@@ -35,12 +37,5 @@ public class Player : NetworkBehaviour
     public void Die()
     {
         isAlive = false;
-    }
-
-    void OnGUI()
-    {
-        Vector2 playerPosOnScreen = mainCamera.WorldToScreenPoint(gameObject.GetComponent<Transform>().position);
-
-        GUI.Label(new Rect(playerPosOnScreen.x - 10, playerPosOnScreen.y - 10, 20, 20), name);
     }
 }

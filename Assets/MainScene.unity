@@ -1909,6 +1909,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1392498090}
   m_RootOrder: 0
+--- !u!1 &1113488036
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 2111682032}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1113488037}
+  m_Layer: 0
+  m_Name: Missing Prefab
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1113488037
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 2111682032}
+  m_GameObject: {fileID: 1113488036}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1426655994}
+  m_RootOrder: 14
 --- !u!1001 &1253142180
 Prefab:
   m_ObjectHideFlags: 0
@@ -2085,7 +2112,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb9d544220a5bd344b060f7a021610e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  updateInterval: 0.5
 --- !u!4 &1294113579
 Transform:
   m_ObjectHideFlags: 0
@@ -2204,6 +2230,7 @@ MonoBehaviour:
   m_SpawnPrefabs:
   - {fileID: 106952, guid: 85e332813e7fadc4dbaf378b077d7b4d, type: 2}
   - {fileID: 146146, guid: 3b6ab00f107caa448b6116ff739cd46a, type: 2}
+  - {fileID: 173920, guid: 5a920eb2891f6ca42bb91093a14b7273, type: 2}
   m_CustomConfig: 1
   m_MaxConnections: 16
   m_ConnectionConfig:
@@ -2301,6 +2328,7 @@ Transform:
   - {fileID: 829198043}
   - {fileID: 523155158}
   - {fileID: 326262690}
+  - {fileID: 1113488037}
   m_Father: {fileID: 0}
   m_RootOrder: 3
 --- !u!1001 &1447820111

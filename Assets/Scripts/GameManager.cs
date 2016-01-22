@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
             foreach (string s in players.Keys)
             {
-                GUILayout.Label(s + "  -  " + players[s].transform.name);
+                GUILayout.Label(players[s].playerName);
             }
 
             GUILayout.EndVertical();

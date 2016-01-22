@@ -12,6 +12,7 @@ GameObject:
   - 114: {fileID: 11404370}
   - 114: {fileID: 11477914}
   - 114: {fileID: 11493728}
+  - 114: {fileID: 11489908}
   m_Layer: 5
   m_Name: KillAnnouncerCanvas
   m_TagString: Untagged
@@ -106,6 +107,38 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &11489908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 173920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 90
+    i1: 146
+    i2: 14
+    i3: 178
+    i4: 137
+    i5: 31
+    i6: 108
+    i7: 164
+    i8: 43
+    i9: 185
+    i10: 16
+    i11: 147
+    i12: 161
+    i13: 75
+    i14: 114
+    i15: 115
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &11493728
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -117,8 +150,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186b43e35068c1343a78c0e45f435347, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  owner: {fileID: 0}
-  target: {fileID: 0}
+  owner: 
+  target: 
 --- !u!222 &22226744
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -184,7 +217,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalPlayerAuthority
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 173920}

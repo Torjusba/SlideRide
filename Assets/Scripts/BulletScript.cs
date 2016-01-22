@@ -12,6 +12,7 @@ public class BulletScript : NetworkBehaviour
     GameObject fragment;
 
     public Player owner;
+    public Player target;
     public int range;
     public Vector3 direction;
     public float velocity;
@@ -25,6 +26,7 @@ public class BulletScript : NetworkBehaviour
         Destroy(gameObject, range); // Destroys the object after range seconds.
     }
 
+    [Server]
     void OnCollisionEnter(Collision collision)
     {
         if (base.isServer)
@@ -33,19 +35,14 @@ public class BulletScript : NetworkBehaviour
             //If it hits a player, kill it
             if (collision.collider.tag == "Player")
             {
-                Player target = GameManager.GetPlayer(collision.collider.name);
+                target = GameManager.GetPlayer(collision.collider.name);
 
                 //If the target is not the player who fired, kill
                 if (target != owner && target != null && owner != null)
                 {
                     target.Die();
 
-                    GameObject killMessage = Instantiate(killMessagePrefab);
-                    KillMessageScript kms = killMessage.GetComponent<KillMessageScript>();
-                    kms.owner = owner;
-                    kms.target = target;
-
-                    Debug.Log(target.name + " was killed by " + owner.name);
+                    CmdShowKillMessage();
                 }
                 else
                 {
@@ -66,6 +63,30 @@ public class BulletScript : NetworkBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+
+    [Command]
+    void CmdShowKillMessage()
+    {
+        string ownerName = owner.GetComponent<Player>().playerName;
+        string targetName = target.GetComponent<Player>().playerName;
+
+        GameObject killMessage = (GameObject)Instantiate(killMessagePrefab);
+        KillMessageScript kms = killMessage.GetComponent<KillMessageScript>();
+        kms.owner = ownerName;
+        kms.target = targetName;
+        RpcShowKillMessage(ownerName, targetName);
+    }
+
+    [ClientRpc]
+    void RpcShowKillMessage(string ownerName, string targetName)
+    {
+        GameObject killMessage = (GameObject)Instantiate(killMessagePrefab);
+        KillMessageScript kms = killMessage.GetComponent<KillMessageScript>();
+        kms.owner = ownerName;
+        kms.target = targetName;
+
     }
 
     [Command]
