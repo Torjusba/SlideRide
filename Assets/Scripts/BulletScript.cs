@@ -31,14 +31,15 @@ public class BulletScript : NetworkBehaviour
     {
         if (base.isServer)
         {
-            bool destroyThis = true;
+            bool destroyBullet = true;
             //If it hits a player, kill it
             if (collision.collider.tag == "Player")
             {
-                target = GameManager.GetPlayer(collision.collider.name);
+                target = collision.collider.GetComponentInParent<Player>();
+                // target = GameManager.GetPlayer(collision.collider.name);
 
                 //If the target is not the player who fired, kill
-                if (target != owner && target != null && owner != null)
+                if (target != null && owner != null && target != owner)
                 {
                     target.Die();
 
@@ -46,11 +47,11 @@ public class BulletScript : NetworkBehaviour
                 }
                 else
                 {
-                    destroyThis = false;
+                    destroyBullet = false;
                 }
             }
 
-            if (destroyThis)
+            if (destroyBullet)
             {
                 //Create fragments
                 for (int i = 0; i < 8; i++)
