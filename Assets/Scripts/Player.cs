@@ -9,13 +9,10 @@ public class Player : NetworkBehaviour
     [SerializeField]
     PlayerMotor motor;
 
-    Camera mainCamera;
-
     public bool isAlive;
     
     void Awake()
     {
-        mainCamera = gameObject.GetComponentInChildren<Camera>();
         isAlive = true;
     }
 

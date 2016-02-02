@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 
     private PlayerMotor Motor;
 
-    private Camera camera;
+    private new Camera camera;
 
     [SerializeField]
     private float acceleration = 1f;
