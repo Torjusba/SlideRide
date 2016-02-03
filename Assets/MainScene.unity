@@ -1688,6 +1688,52 @@ BoxCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 3f79402ff4ca9c54d96a09d1a77540d5, type: 3}
   m_PrefabInternal: {fileID: 829198039}
+--- !u!1001 &858126148
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 16.370888
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 45.306618
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -13.034543
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 498288, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2030208, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 4294967295
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1cd91f97e931cd4438b59d9eed113c28, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &867592821
 Prefab:
   m_ObjectHideFlags: 0
@@ -2328,7 +2374,7 @@ Transform:
   - {fileID: 142257085}
   - {fileID: 561032156}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1426655993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2362,7 +2408,7 @@ Transform:
   - {fileID: 125696328}
   - {fileID: 1623638700}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1426655995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3352,7 +3398,7 @@ Transform:
   - {fileID: 733986764}
   - {fileID: 1286602745}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &2100939076
 GameObject:
   m_ObjectHideFlags: 0
