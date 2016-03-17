@@ -9,12 +9,14 @@ public class CameraHandler : MonoBehaviour
     Vector3 firstPersonPos;
     [SerializeField]
     Vector3 targetPos;
+    Camera cam;
 
     void Start()
     {
         currentPerspective = PlayerPrefs.GetInt("Perspective");
         thirdPersonPos = new Vector3(0f, 1.5f, -5.5f);
         firstPersonPos = new Vector3(0f, 0f, 0f);
+        cam = gameObject.GetComponent<Camera>();
     }
 
     void Update()
@@ -26,9 +28,11 @@ public class CameraHandler : MonoBehaviour
             {
                 case 1:
                     targetPos = firstPersonPos;
+                    cam.cullingMask &= ~(1 << LayerMask.NameToLayer("LocalPlayer"));
                     break;
                 case 3:
                     targetPos = thirdPersonPos;
+                    cam.cullingMask |= 1 << LayerMask.NameToLayer("LocalPlayer");
                     break;
             }
 
